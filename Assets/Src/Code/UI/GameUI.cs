@@ -51,12 +51,14 @@ namespace Assets.Src.Code.UI
 
         private void MainMenu()
         {
+            GameController.Instance.SwitchPauseGame(false, isForced: true);
             GameAudio.Instance.PlayClickSound();
             SceneManager.LoadScene(0);
         }
 
         private void Restart()
         {
+            GameController.Instance.SwitchPauseGame(false, isForced: true);
             GameAudio.Instance.PlayClickSound();
             SceneManager.LoadScene(1);
         }
