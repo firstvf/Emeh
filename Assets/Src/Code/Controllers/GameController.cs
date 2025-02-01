@@ -1,5 +1,7 @@
 using Assets.Src.Code.Game;
+using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Src.Code.Controllers
@@ -14,6 +16,7 @@ namespace Assets.Src.Code.Controllers
 
         private int _health;
         private int _score;
+        private CancellationTokenSource _cancellationToken;
 
         private void Awake()
         {
@@ -29,6 +32,23 @@ namespace Assets.Src.Code.Controllers
         private void Start()
         {
             _health = 3;
+        }
+
+        public void ChangeSpeed(float speed)
+        {
+            _cancellationToken?.Cancel();
+
+            _cancellationToken = new CancellationTokenSource();
+            ChangeSpeedTask(_cancellationToken, speed).Forget();
+        }
+
+        private async UniTaskVoid ChangeSpeedTask(CancellationTokenSource cancellationToken, float gameSpeed)
+        {
+            GameSpeed = gameSpeed;
+
+            await UniTask.Delay(15000);
+            if (cancellationToken.IsCancellationRequested == false)
+                GameSpeed = 1;
         }
 
         public void AddScore()

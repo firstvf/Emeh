@@ -1,5 +1,6 @@
 ﻿using Assets.Src.Code.Controllers;
 using Assets.Src.Code.Game.Interactable;
+using Assets.Src.Code.Game.Interactable.Bonuses;
 using System.Collections;
 using UnityEngine;
 
@@ -11,20 +12,16 @@ namespace Assets.Src.Code.Spawner
         [SerializeField] private Hearth _hearth;
         [SerializeField] private Enemy _enemy;
         [SerializeField] private StickySphere _stickySphere;
+        [SerializeField] private SpeedDownSphere _speedDown;
+        [SerializeField] private SpeedUpSphere _speedUp;
+        [SerializeField] private SpeedRopeSphere _speedRope;
 
-        private ObjectPooler<SpawnObject> _enemyPool, _stickySpherePool, _hearthPool;
-
-        [Range(0, 10)]
-        [SerializeField] private float _stickySphereTime;
-        [Range(0, 10)]
-        [SerializeField] private float _enemyTime;
-        [Range(0, 10)]
-        [SerializeField] private float _hearthTime;
+        private ObjectPooler<SpawnObject> _enemyPool, _stickySpherePool
+            , _hearthPool, _speedUpPool, _speedDownPool, _speedRopePool;
 
         private void Start()
         {
             StartPool();
-
             GameController.Instance.OnHealthChangeHandler += DisablePools;
         }
 
@@ -43,12 +40,22 @@ namespace Assets.Src.Code.Spawner
             _stickySpherePool = new(_stickySphere, _poolParent, 5);
             _hearthPool = new(_hearth, _poolParent, 5);
 
+            _speedUpPool = new(_speedUp, _poolParent, 2);
+            _speedDownPool = new(_speedDown, _poolParent, 2);
+            _speedRopePool = new(_speedRope, _poolParent, 2);
+
+
             var item = _stickySpherePool.GetFreeObjectFromPool();
             item.GetRect().anchoredPosition = new Vector2(0, 500f);
 
-            StartCoroutine(SpawnCoroutine(_enemyPool, new WaitForSeconds(_enemyTime)));
-            StartCoroutine(SpawnCoroutine(_stickySpherePool, new WaitForSeconds(_stickySphereTime), true));
-            StartCoroutine(SpawnCoroutine(_hearthPool, new WaitForSeconds(_hearthTime)));
+            StartCoroutine(SpawnCoroutine(_enemyPool, new WaitForSeconds(7.65f)));
+            StartCoroutine(SpawnCoroutine(_stickySpherePool, new WaitForSeconds(1.7f), true));
+            StartCoroutine(SpawnCoroutine(_hearthPool, new WaitForSeconds(8.5f)));
+
+            // bonuses
+            StartCoroutine(SpawnCoroutine(_speedUpPool, new WaitForSeconds(10)));
+            StartCoroutine(SpawnCoroutine(_speedDownPool, new WaitForSeconds(12)));
+            StartCoroutine(SpawnCoroutine(_speedRopePool, new WaitForSeconds(7)));
         }
 
         private Vector2 GetSpawnPosition(bool isStickySphere)
