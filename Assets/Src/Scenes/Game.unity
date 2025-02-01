@@ -1421,7 +1421,7 @@ SpringJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
+  m_AutoConfigureDistance: 0
   m_Distance: 1.9733336
   m_DampingRatio: 1
   m_Frequency: 1
@@ -2438,9 +2438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolParent: {fileID: 1811010548}
-  _hearth: {fileID: 9117456935647862678, guid: 93741454e7076ad4484f14a768f24592, type: 3}
-  _enemy: {fileID: 5563676678585569449, guid: 24964a5231df08b44b3093d4d0e33a79, type: 3}
-  _stickySphere: {fileID: 4434630655152107790, guid: 1fb3b6f23b908f24eb9402ea4275a550, type: 3}
+  _hearth: {fileID: 3177788232402472551, guid: 93741454e7076ad4484f14a768f24592, type: 3}
+  _enemy: {fileID: 7019411250561394217, guid: 24964a5231df08b44b3093d4d0e33a79, type: 3}
+  _stickySphere: {fileID: 3439174168879208134, guid: 1fb3b6f23b908f24eb9402ea4275a550, type: 3}
   _stickySphereTime: 1.67
   _enemyTime: 7.65
   _hearthTime: 8.33

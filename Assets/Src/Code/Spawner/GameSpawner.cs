@@ -1,5 +1,5 @@
 ﻿using Assets.Src.Code.Controllers;
-using Assets.Src.Code.Game;
+using Assets.Src.Code.Game.Interactable;
 using System.Collections;
 using UnityEngine;
 

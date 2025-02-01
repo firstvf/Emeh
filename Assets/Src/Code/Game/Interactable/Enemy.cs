@@ -1,15 +1,15 @@
 ﻿using Assets.Src.Code.Controllers;
 using UnityEngine;
 
-namespace Assets.Src.Code.Game
+namespace Assets.Src.Code.Game.Interactable
 {
-    public class Hearth : SpawnObject
+    public class Enemy : SpawnObject
     {
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected override void InteractAction(Collider2D collision)
         {
             if (collision.TryGetComponent(out Player player))
             {
-                GameController.Instance.AddHealth();
+                GameController.Instance.RemoveHealth();
                 gameObject.SetActive(false);
             }
         }

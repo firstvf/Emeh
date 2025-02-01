@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Src.Code.Game
+namespace Assets.Src.Code.Game.Interactable
 {
     public class StickySphere : SpawnObject, IPointerClickHandler
     {
