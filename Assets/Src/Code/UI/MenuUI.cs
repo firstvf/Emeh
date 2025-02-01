@@ -11,8 +11,7 @@ namespace Assets.Src.Code.UI
         [SerializeField] private Button _soundButton, _settingsButton, _startButton;
         [SerializeField] private GameObject _soundOffIcon;
         [SerializeField] private RectTransform _settingsWindow;
-        private Tween _openSettingsTween;
-
+   
         private void Start()
         {
             SwitchSound();
@@ -70,16 +69,13 @@ namespace Assets.Src.Code.UI
 
             if (_settingsWindow.gameObject.activeInHierarchy == false)
             {
-                //_settingsButton.interactable = false;
-                //_settingsWindow.gameObject.SetActive(true);
-                _openSettingsTween = _settingsWindow.DOAnchorPos(new Vector2(-150, -500), 0.5f)
+               _settingsWindow.DOAnchorPos(new Vector2(-150, -500), 0.5f)
                     .OnStart(() => _settingsWindow.gameObject.SetActive(true))
                     .OnComplete(() => _settingsButton.interactable = true);
             }
             else if (_settingsWindow.gameObject.activeInHierarchy)
             {
-                _openSettingsTween = _settingsWindow.DOAnchorPos(new Vector2(-150, 0), 0.5f)
-                    //.OnStart(() => _settingsButton.interactable = false)
+               _settingsWindow.DOAnchorPos(new Vector2(-150, 0), 0.5f)
                     .OnComplete(() => SettingsCloseWindowTweenAction());
             }
         }

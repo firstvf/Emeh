@@ -11,8 +11,8 @@ namespace Assets.Src.Code.UI
         [SerializeField] private Sprite _redHeart, _blackHearth;
         [SerializeField] private Image[] _hearts;
         [SerializeField] private TextMeshProUGUI _score;
-        [SerializeField] private Button _mainMenuButton, _restartButton;
-        [SerializeField] private GameObject _gameOverWindow;
+        [SerializeField] private Button _mainMenuButton, _restartButton, _openGuideButton, _closeGuideButton;
+        [SerializeField] private GameObject _gameOverWindow, _guideMenu;
 
         private void Start()
         {
@@ -22,6 +22,24 @@ namespace Assets.Src.Code.UI
             GameController.Instance.OnScoreChangeHandler += UpdateScore;
             _mainMenuButton.onClick.AddListener(MainMenu);
             _restartButton.onClick.AddListener(Restart);
+            _openGuideButton.onClick.AddListener(OpenGuideMenu);
+            _closeGuideButton.onClick.AddListener(CloseGuideMenu);
+
+            if (PlayerPrefs.GetInt("GuideComplete") == 0)
+                OpenGuideMenu();
+        }
+
+        private void OpenGuideMenu()
+        {
+            _guideMenu.SetActive(true);
+            GameController.Instance.SwitchPauseGame(true);
+        }
+
+        private void CloseGuideMenu()
+        {
+            _guideMenu.SetActive(false);
+            GameController.Instance.SwitchPauseGame(false);
+            PlayerPrefs.SetInt("GuideComplete", 1);
         }
 
         private void MainMenu()
@@ -71,6 +89,8 @@ namespace Assets.Src.Code.UI
             GameController.Instance.OnScoreChangeHandler -= UpdateScore;
             _mainMenuButton.onClick.RemoveListener(MainMenu);
             _restartButton.onClick.RemoveListener(Restart);
+            _openGuideButton.onClick.RemoveListener(OpenGuideMenu);
+            _closeGuideButton.onClick.RemoveListener(CloseGuideMenu);
         }
     }
 }
