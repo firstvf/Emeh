@@ -79,11 +79,11 @@ namespace Assets.Src.Code.Controllers
                 SwitchPauseGame(true);
         }
 
-        public void SwitchPauseGame(bool isPause)
+        public void SwitchPauseGame(bool isPause, bool isForced = false)
         {
             if (isPause)
                 Time.timeScale = 0;
-            else if (_health > 0)
+            else if (isForced || _health > 0)
                 Time.timeScale = 1;
         }
 
