@@ -41,7 +41,10 @@ namespace Assets.Src.Code.Game
             _pullingSpeed = 1;
             await UniTask.Delay(15000);
             if (cancelToken.IsCancellationRequested == false)
+            {
                 _pullingSpeed = 0.1f;
+                GameAudio.Instance.PlayEndBonusSound();
+            }
         }
 
         public void SetStickySphere(StickySphere stickySphere)

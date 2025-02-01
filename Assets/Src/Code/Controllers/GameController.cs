@@ -48,7 +48,10 @@ namespace Assets.Src.Code.Controllers
 
             await UniTask.Delay(15000);
             if (cancellationToken.IsCancellationRequested == false)
+            {
                 GameSpeed = 1;
+                GameAudio.Instance.PlayEndBonusSound();
+            }
         }
 
         public void AddScore()

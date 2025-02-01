@@ -51,6 +51,7 @@ MonoBehaviour:
   _bonus: {fileID: 8300000, guid: 718e16d853a2ea14983076556f1515db, type: 3}
   _rope: {fileID: 8300000, guid: a10344db2cb046f4a8f3d3dbab08ffdb, type: 3}
   _click: {fileID: 8300000, guid: a1a804cf09431654b9af52d24e4b1e28, type: 3}
+  _endBonus: {fileID: 8300000, guid: 1c230cacb20db774dbeacee7bd1bfe38, type: 3}
 --- !u!82 &594294625978240232
 AudioSource:
   m_ObjectHideFlags: 0
