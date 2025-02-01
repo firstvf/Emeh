@@ -26,17 +26,24 @@ namespace Assets.Src.Code.UI
             _closeGuideButton.onClick.AddListener(CloseGuideMenu);
 
             if (PlayerPrefs.GetInt("GuideComplete") == 0)
-                OpenGuideMenu();
+            {
+                _guideMenu.SetActive(true);
+                GameController.Instance.SwitchPauseGame(true);
+            }
         }
 
         private void OpenGuideMenu()
         {
+            GameAudio.Instance.PlayClickSound();
+
             _guideMenu.SetActive(true);
             GameController.Instance.SwitchPauseGame(true);
         }
 
         private void CloseGuideMenu()
         {
+            GameAudio.Instance.PlayClickSound();
+
             _guideMenu.SetActive(false);
             GameController.Instance.SwitchPauseGame(false);
             PlayerPrefs.SetInt("GuideComplete", 1);

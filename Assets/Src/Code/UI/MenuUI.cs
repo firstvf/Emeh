@@ -11,7 +11,7 @@ namespace Assets.Src.Code.UI
         [SerializeField] private Button _soundButton, _settingsButton, _startButton;
         [SerializeField] private GameObject _soundOffIcon;
         [SerializeField] private RectTransform _settingsWindow;
-   
+
         private void Start()
         {
             SwitchSound();
@@ -56,8 +56,6 @@ namespace Assets.Src.Code.UI
         private void Play()
         {
             GameAudio.Instance.PlayClickSound();
-
-            Debug.LogError("Load scene[1], but should be guide");
             SceneManager.LoadScene(1);
         }
 
@@ -69,14 +67,14 @@ namespace Assets.Src.Code.UI
 
             if (_settingsWindow.gameObject.activeInHierarchy == false)
             {
-               _settingsWindow.DOAnchorPos(new Vector2(-150, -500), 0.5f)
-                    .OnStart(() => _settingsWindow.gameObject.SetActive(true))
-                    .OnComplete(() => _settingsButton.interactable = true);
+                _settingsWindow.DOAnchorPos(new Vector2(-150, -500), 0.5f)
+                     .OnStart(() => _settingsWindow.gameObject.SetActive(true))
+                     .OnComplete(() => _settingsButton.interactable = true);
             }
             else if (_settingsWindow.gameObject.activeInHierarchy)
             {
-               _settingsWindow.DOAnchorPos(new Vector2(-150, 0), 0.5f)
-                    .OnComplete(() => SettingsCloseWindowTweenAction());
+                _settingsWindow.DOAnchorPos(new Vector2(-150, 0), 0.5f)
+                     .OnComplete(() => SettingsCloseWindowTweenAction());
             }
         }
 
