@@ -83,7 +83,7 @@ namespace Assets.Src.Code.Controllers
         {
             if (isPause)
                 Time.timeScale = 0;
-            else
+            else if (_health > 0)
                 Time.timeScale = 1;
         }
 
