@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2620522507592430575}
   - component: {fileID: 2058833637395512959}
   - component: {fileID: 8669756533617717858}
-  - component: {fileID: 9117456935647862678}
+  - component: {fileID: 3177788232402472551}
   m_Layer: 2
   m_Name: Hearth
   m_TagString: Untagged
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8100001
---- !u!114 &9117456935647862678
+--- !u!114 &3177788232402472551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,6 +134,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2631170506103157785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff18016a9bc51d24da4f77c03ab96d19, type: 3}
+  m_Script: {fileID: 11500000, guid: 98c1d37049f056748b0e1e89f785aeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
