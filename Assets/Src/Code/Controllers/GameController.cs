@@ -42,18 +42,6 @@ namespace Assets.Src.Code.Controllers
             ChangeSpeedTask(_cancellationToken, speed).Forget();
         }
 
-        private async UniTaskVoid ChangeSpeedTask(CancellationTokenSource cancellationToken, float gameSpeed)
-        {
-            GameSpeed = gameSpeed;
-
-            await UniTask.Delay(15000);
-            if (cancellationToken.IsCancellationRequested == false)
-            {
-                GameSpeed = 1;
-                GameAudio.Instance.PlayEndBonusSound();
-            }
-        }
-
         public void AddScore()
         {
             _score++;
@@ -86,6 +74,9 @@ namespace Assets.Src.Code.Controllers
                 _health--;
                 OnHealthChangeHandler?.Invoke(_health);
             }
+
+            if (_health <= 0)
+                SwitchPauseGame(true);
         }
 
         public void SwitchPauseGame(bool isPause)
@@ -97,8 +88,18 @@ namespace Assets.Src.Code.Controllers
         }
 
         public void GameOver()
+        => RemoveHealth(true);
+
+        private async UniTaskVoid ChangeSpeedTask(CancellationTokenSource cancellationToken, float gameSpeed)
         {
-            RemoveHealth(true);
+            GameSpeed = gameSpeed;
+
+            await UniTask.Delay(15000);
+            if (cancellationToken.IsCancellationRequested == false)
+            {
+                GameSpeed = 1;
+                GameAudio.Instance.PlayEndBonusSound();
+            }
         }
     }
 }

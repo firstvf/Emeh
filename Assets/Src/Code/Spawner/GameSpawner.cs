@@ -1,5 +1,4 @@
-﻿using Assets.Src.Code.Controllers;
-using Assets.Src.Code.Game.Interactable;
+﻿using Assets.Src.Code.Game.Interactable;
 using Assets.Src.Code.Game.Interactable.Bonuses;
 using System.Collections;
 using UnityEngine;
@@ -22,16 +21,6 @@ namespace Assets.Src.Code.Spawner
         private void Start()
         {
             StartPool();
-            GameController.Instance.OnHealthChangeHandler += DisablePools;
-        }
-
-        private void DisablePools(int hp)
-        {
-            if (hp <= 0)
-            {
-                _poolParent.gameObject.SetActive(false);
-                gameObject.SetActive(false);
-            }
         }
 
         private void StartPool()
@@ -97,11 +86,6 @@ namespace Assets.Src.Code.Spawner
                 var item = pool.GetFreeObjectFromPool();
                 item.GetRect().anchoredPosition = GetSpawnPosition(isStickySphere);
             }
-        }
-
-        private void OnDestroy()
-        {
-            GameController.Instance.OnHealthChangeHandler -= DisablePools;
         }
     }
 }

@@ -36,23 +36,10 @@ namespace Assets.Src.Code.Game
             ChangeRopeSpeedTask(_cancellationToken).Forget();
         }
 
-        private async UniTaskVoid ChangeRopeSpeedTask(CancellationTokenSource cancelToken)
-        {
-            _pullingSpeed = 1;
-            await UniTask.Delay(15000);
-            if (cancelToken.IsCancellationRequested == false)
-            {
-                _pullingSpeed = 0.1f;
-                GameAudio.Instance.PlayEndBonusSound();
-            }
-        }
-
         public void SetStickySphere(StickySphere stickySphere)
         {
             if (_target != null)
-            {
                 _target.SwitchJointRope(false);
-            }
 
             GameAudio.Instance.PlayRopeSound();
             _isRopeActive = true;
@@ -71,6 +58,17 @@ namespace Assets.Src.Code.Game
             _isRopeActive = false;
             _joint.enabled = false;
             _lineRenderer.enabled = false;
+        }
+
+        private async UniTaskVoid ChangeRopeSpeedTask(CancellationTokenSource cancelToken)
+        {
+            _pullingSpeed = 1;
+            await UniTask.Delay(15000);
+            if (cancelToken.IsCancellationRequested == false)
+            {
+                _pullingSpeed = 0.1f;
+                GameAudio.Instance.PlayEndBonusSound();
+            }
         }
 
         private void CreateRope()
